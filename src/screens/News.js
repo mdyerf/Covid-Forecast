@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import routes from "../constants/routes";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import { getNews } from "../api/news";
+import sortByOptions from "../constants/sort";
 
 function News(props) {
+  const [news, setNews] = useState([]);
+  const [sortBy, setSortBy] = useState(0);
+  const [from, setFrom] = useState("");
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    getNews(sortByOptions[sortBy], from, page).then((res) => setNews(res));
+  }, [sortBy, from, page]);
+
   return (
     <>
       <div className="page-title">News about Covid-19</div>
@@ -16,87 +28,67 @@ function News(props) {
           Recent Statistics
         </div>
       </Link>
+      <div
+        onClick={() => setSortBy((sortBy + 1) % sortByOptions.length)}
+        className="nav-link"
+        style={{ right: "30px" }}
+      >
+        Sort By {sortByOptions[sortBy]}
+      </div>
       <div className="news-container">
-        <Link to={routes.NewsDetail} params={{ id: 1 }}>
-          <div className="news-card">
-            <div className="news-image-container">
-              <img width="100%" src="doodle-bg.jpg" alt="news" />
-            </div>
-            <div className="news-text">
-              <div className="news-title">
-                This is a long title about this news!
+        {news &&
+          news.length > 0 &&
+          news.map((n) => (
+            <a href={n.url}>
+              <div className="news-card">
+                <div className="news-image-container">
+                  <img width="100%" src={n.urlToImage} alt={n.title} />
+                </div>
+                <div className="news-text">
+                  <div className="news-title">{n.title}</div>
+                  <div className="news-subtitle">{n.content}</div>
+                </div>
               </div>
-              <div className="news-subtitle">
-                And this is subtitle which is actualy very long that may not fit
-                in the card
-              </div>
-            </div>
+            </a>
+          ))}
+        {(!news || news.length === 0) && (
+          <div className="page-title">No more news are found!!</div>
+        )}
+      </div>
+      <div
+        style={{
+          flexDirection: "row",
+          display: "flex",
+          justifyContent: "space-around",
+          marginBottom: "70px",
+        }}
+      >
+        {page > 1 && (
+          <div
+            className="nav-link"
+            onClick={() => setPage(page - 1)}
+            style={{ position: "relative" }}
+          >
+            <BsFillArrowLeftCircleFill
+              style={{ marginRight: "10px" }}
+              className="nav-link-arr"
+            />
+            Periviuos Page
           </div>
-        </Link>
-        <Link to={routes.NewsDetail} params={{ id: 1 }}>
-          <div className="news-card">
-            <div className="news-image-container">
-              <img width="100%" src="doodle-bg.jpg" alt="news" />
-            </div>
-            <div className="news-text">
-              <div className="news-title">
-                This is a long title about this news!
-              </div>
-              <div className="news-subtitle">
-                And this is subtitle which is actualy very long that may not fit
-                in the card
-              </div>
-            </div>
+        )}
+        {news && news.length > 0 && (
+          <div
+            className="nav-link"
+            onClick={() => setPage(page + 1)}
+            style={{ position: "relative" }}
+          >
+            Next Page
+            <BsFillArrowRightCircleFill
+              style={{ marginLeft: "10px" }}
+              className="nav-link-arr"
+            />
           </div>
-        </Link>
-        <Link to={routes.NewsDetail} params={{ id: 1 }}>
-          <div className="news-card">
-            <div className="news-image-container">
-              <img width="100%" src="doodle-bg.jpg" alt="news" />
-            </div>
-            <div className="news-text">
-              <div className="news-title">
-                This is a long title about this news!
-              </div>
-              <div className="news-subtitle">
-                And this is subtitle which is actualy very long that may not fit
-                in the card
-              </div>
-            </div>
-          </div>
-        </Link>
-        <Link to={routes.NewsDetail} params={{ id: 1 }}>
-          <div className="news-card">
-            <div className="news-image-container">
-              <img width="100%" src="doodle-bg.jpg" alt="news" />
-            </div>
-            <div className="news-text">
-              <div className="news-title">
-                This is a long title about this news!
-              </div>
-              <div className="news-subtitle">
-                And this is subtitle which is actualy very long that may not fit
-                in the card
-              </div>
-            </div>
-          </div>
-        </Link>
-        <Link to={routes.NewsDetail} params={{ id: 1 }}>
-          <div className="news-card">
-            <div className="news-image-container">
-              <img width="100%" src="doodle-bg.jpg" alt="news" />
-            </div>
-            <div className="news-text">
-              <div className="news-title">
-                This is a long title about this news!
-              </div>
-              <div className="news-subtitle">
-                And this is subtitle which is actualy very long that may not fit
-                in the card
-              </div>
-            </div>
-          </div>
-        </Link>
+        )}
       </div>
     </>
   );

@@ -38,6 +38,7 @@ div.nav-link {
   height: fit-content;
   border-radius: 10px;
   text-align: center;
+  cursor: pointer;
 }
 div.nav-link:hover {
   background-color: #040405;
@@ -93,11 +94,12 @@ div.news-text {
 
 div.news-title {
   font-weight: bolder;
-  font-size: xx-large;
+  font-size: large;
   overflow: hidden;
   max-height: 150px;
 }
 div.news-subtitle {
   overflow: hidden;
+  font-size: small;
   max-height: 100px;
 }
