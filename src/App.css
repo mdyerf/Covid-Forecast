@@ -1,38 +1,103 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "RocknRoll One", sans-serif;
+  text-decoration: none;
+  color: black;
+}
+
+body {
+  background-color: #12121a;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+
+div.page-title {
+  border: 2px solid goldenrod;
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  padding: 10px;
+  color: whitesmoke;
+  width: 20%;
+  border-radius: 10px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+div.nav-link {
+  position: absolute;
+  border: 2px solid goldenrod;
+  top: 40px;
+  bottom: 30px;
+  padding: 10px;
+  color: whitesmoke;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 10px;
+  text-align: center;
+}
+div.nav-link:hover {
+  background-color: #040405;
+}
+.nav-link-arr {
+  fill: whitesmoke;
+  margin-top: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+div.news-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+div.news-card {
+  width: 600px;
+  box-shadow: 0 0 10px black;
+  background-color: white;
+  border-radius: 10px;
+  margin: 20px 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+div.news-card:hover {
+  background-color: rgb(195, 207, 207);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+div.news-image-container {
+  width: 33%;
+  min-width: 230px;
+  margin: 15px;
+}
+
+div.news-image-container img {
+  margin: auto;
+  border-radius: 3px;
+  box-shadow: 0 0 10px gray;
+}
+
+div.news-text {
+  border-left: 3px solid brown;
+  height: 95%;
+  padding: 15px;
+  max-width: 250px;
+  max-height: 250px;
+}
+
+div.news-title {
+  font-weight: bolder;
+  font-size: xx-large;
+  overflow: hidden;
+  max-height: 150px;
+}
+div.news-subtitle {
+  overflow: hidden;
+  max-height: 100px;
 }
