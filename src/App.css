@@ -114,11 +114,69 @@ p.author {
   font-size: x-small;
 }
 
+.name-text {
+  color: goldenrod;
+}
+
+.centeral {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats-table {
+  margin: 20px;
+  width: fit-content;
+  padding: 10px;
+  box-shadow: 0 0 10px black;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats-row {
+  margin: 0px 10px;
+  padding: 10px;
+}
+
+.icon {
+  margin-right: 5px;
+}
+.death {
+  fill: red;
+  width: 20px;
+}
+.people {
+  fill: blue;
+}
+.health {
+  fill: orangered;
+}
+.virus {
+  fill: green;
+}
+
+div.icon-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 @media only screen and (max-width: 700px) {
   .select {
     margin: auto;
     width: 250px;
     font-size: 3vw;
+  }
+  .stats-table {
+    flex-direction: column;
   }
   div.page-title, div.nav-link {
     width: 20%;
