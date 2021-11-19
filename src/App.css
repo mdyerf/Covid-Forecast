@@ -113,3 +113,26 @@ div.news-subtitle {
 p.author {
   font-size: x-small;
 }
+
+@media only screen and (max-width: 700px) {
+  .select {
+    margin: auto;
+    width: 250px;
+    font-size: 3vw;
+  }
+  div.page-title, div.nav-link {
+    width: 20%;
+    padding: 2%;
+    border-width: 1px;
+    font-size: 2vw;
+  }
+  div.news-card {
+    width: 250px;
+    margin: 10px;
+    flex-direction: column;
+  }
+  div.news-text {
+    border-left: none;
+    border-top: 3px solid brown;
+  }  
+}
