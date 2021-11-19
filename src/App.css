@@ -94,12 +94,22 @@ div.news-text {
 
 div.news-title {
   font-weight: bolder;
-  font-size: large;
+  font-size: medium;
   overflow: hidden;
   max-height: 150px;
 }
+
 div.news-subtitle {
   overflow: hidden;
-  font-size: small;
+  font-size: smaller;
   max-height: 100px;
+}
+
+.select {
+  width: 25%;
+  margin-left: 30px;
+}
+
+p.author {
+  font-size: x-small;
 }

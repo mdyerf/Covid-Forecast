@@ -5,15 +5,19 @@ import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { getNews } from "../api/news";
 import sortByOptions from "../constants/sort";
+import Select from "react-select";
+import dateOptions from "../constants/dateOptions";
 
 function News(props) {
   const [news, setNews] = useState([]);
   const [sortBy, setSortBy] = useState(0);
-  const [from, setFrom] = useState("");
+  const [from, setFrom] = useState(dateOptions[1]);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    getNews(sortByOptions[sortBy], from, page).then((res) => setNews(res));
+    getNews(sortByOptions[sortBy], from.value, page).then((res) =>
+      setNews(res)
+    );
   }, [sortBy, from, page]);
 
   return (
@@ -35,14 +39,24 @@ function News(props) {
       >
         Sort By {sortByOptions[sortBy]}
       </div>
+      <Select
+        className="select"
+        value={from}
+        onChange={(sel) => setFrom(sel)}
+        options={dateOptions}
+      />
       <div className="news-container">
         {news &&
           news.length > 0 &&
-          news.map((n) => (
-            <a href={n.url}>
+          news.map((n, index) => (
+            <a key={index} href={n.url}>
               <div className="news-card">
                 <div className="news-image-container">
                   <img width="100%" src={n.urlToImage} alt={n.title} />
+                  <p className="author">By: {n.author ?? "unkown"}</p>
+                  <p className="author">
+                    {n.publishedAt.substring(0, 10).replaceAll("-", "/")}
+                  </p>
                 </div>
                 <div className="news-text">
                   <div className="news-title">{n.title}</div>

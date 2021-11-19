@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { getStats } from "../api/stats";
 import routes from "../constants/routes";
 
 function Statistics(props) {
+
+  useEffect(() => {
+    getStats("", "").then((res) => console.log(res));
+  });
   return (
     <>
       <div className="page-title">Recent Covid-19 Statistics</div>
@@ -16,7 +21,6 @@ function Statistics(props) {
           />
         </div>
       </Link>
-      <div>Here is Statistics</div>
     </>
   );
 }
